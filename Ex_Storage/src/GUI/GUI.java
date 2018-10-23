@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import bl.tableModel;
+
 /**
  *
  * @author oskar
@@ -14,8 +16,12 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    
+    private tableModel bl  = new tableModel();
     public GUI() {
         initComponents();
+        
+        table.setModel(bl);
     }
 
     /**
@@ -90,7 +96,7 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMBuySelectedJArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBuySelectedJArticleActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMBuySelectedJArticleActionPerformed
 
     /**

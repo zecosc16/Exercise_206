@@ -12,12 +12,17 @@ package bl;
 public class Article {
     private int id;
     private String description;
-    private int amount,place;
+    private int amount=0,place;
 
-    public Article(int id, String description, int amount, int place) {
+    public Article(int id, String description, int place) {
         this.id = id;
         this.description = description;
-        this.amount = amount;
+       
         this.place = place;
     }
+    
+    public void buyAmount(int i){
+        amount+=i;
+    }
+            
 }
