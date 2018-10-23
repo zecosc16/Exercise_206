@@ -5,7 +5,11 @@
  */
 package GUI;
 
+import bl.CellRenderer;
 import bl.tableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +26,8 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         
         table.setModel(bl);
+        table.setDefaultRenderer(Object.class, new CellRenderer());
+       
     }
 
     /**
@@ -41,8 +47,8 @@ public class GUI extends javax.swing.JFrame {
         jMRemoveSelectedArticle = new javax.swing.JMenuItem();
         jMEditSelectedArticle = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMSellSelectedArticle = new javax.swing.JMenuItem();
         jMBuySelectedJArticle = new javax.swing.JMenuItem();
+        jMSellSelectedArticle = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
@@ -65,20 +71,32 @@ public class GUI extends javax.swing.JFrame {
         jMenu1.setText("Managment");
 
         jMAddNewArticle.setText("Add New Article");
+        jMAddNewArticle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAddNewArticleActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMAddNewArticle);
 
         jMRemoveSelectedArticle.setText("Remove Selected Article");
+        jMRemoveSelectedArticle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMRemoveSelectedArticleActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMRemoveSelectedArticle);
 
         jMEditSelectedArticle.setText("Edit Selected Article");
+        jMEditSelectedArticle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMEditSelectedArticleActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMEditSelectedArticle);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Buy / Sell");
-
-        jMSellSelectedArticle.setText("Sell Selected ARticle");
-        jMenu2.add(jMSellSelectedArticle);
 
         jMBuySelectedJArticle.setText("Buy Selected ARticle");
         jMBuySelectedJArticle.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +106,14 @@ public class GUI extends javax.swing.JFrame {
         });
         jMenu2.add(jMBuySelectedJArticle);
 
+        jMSellSelectedArticle.setText("Sell Selected ARticle");
+        jMSellSelectedArticle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSellSelectedArticleActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMSellSelectedArticle);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -96,8 +122,36 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMBuySelectedJArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBuySelectedJArticleActionPerformed
-        
+        try {
+            bl.buyArticles(table.getSelectedRow(),Integer.parseInt(JOptionPane.showInputDialog("Please enter the amount of articles you want to buy")));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_jMBuySelectedJArticleActionPerformed
+
+    private void jMAddNewArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAddNewArticleActionPerformed
+        DialogArticle d = new DialogArticle(this,true);
+        d.setVisible(true);
+        if(d.isOk()){
+            bl.add(d.getArticle());
+        }
+    }//GEN-LAST:event_jMAddNewArticleActionPerformed
+
+    private void jMRemoveSelectedArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMRemoveSelectedArticleActionPerformed
+        bl.delete(table.getSelectedRow());
+    }//GEN-LAST:event_jMRemoveSelectedArticleActionPerformed
+
+    private void jMSellSelectedArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSellSelectedArticleActionPerformed
+       try {
+            bl.sellArticles(table.getSelectedRow(),Integer.parseInt(JOptionPane.showInputDialog("Please enter the amount of articles you want to sell")));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jMSellSelectedArticleActionPerformed
+
+    private void jMEditSelectedArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMEditSelectedArticleActionPerformed
+        
+    }//GEN-LAST:event_jMEditSelectedArticleActionPerformed
 
     /**
      * @param args the command line arguments

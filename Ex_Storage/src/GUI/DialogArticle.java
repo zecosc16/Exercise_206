@@ -138,6 +138,10 @@ public class DialogArticle extends javax.swing.JDialog {
         return article;
     }
 
+    public DialogArticle(Article article) {
+        this.article = article;
+    }
+
     public boolean isOk() {
         return ok;
     }

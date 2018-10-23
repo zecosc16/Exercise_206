@@ -38,6 +38,26 @@ public class tableModel extends AbstractTableModel{
         return colNames[column];
     }
     
+    public void add(Article a){
+        articles.add(a);
+        fireTableDataChanged();
+    }
+    
+    public void delete(int row){
+        articles.remove(row);
+        fireTableDataChanged();
+    }
+    
+    public void buyArticles(int row,int amount) throws Exception{
+        articles.get(row).buyAmount(amount);
+        fireTableDataChanged();
+    }
+    
+    public void sellArticles(int row,int amount) throws Exception{
+        articles.get(row).sellAmount(amount);
+        fireTableDataChanged();
+    }
+    
     
     
 }
