@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ex_storage;
+package GUI;
 
 /**
  *
@@ -39,7 +39,7 @@ public class GUI extends javax.swing.JFrame {
         jMBuySelectedJArticle = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
